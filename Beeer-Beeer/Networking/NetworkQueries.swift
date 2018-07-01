@@ -48,7 +48,7 @@ class NetworkQueries {
         }
     }
     
-    ///parses the data to for the Beer Models to be used.
+    ///parses the data to for the Beer Models to be used. 
     fileprivate func formBeerModels(_ data: Data) {
         var response: [Any]?
         do {
