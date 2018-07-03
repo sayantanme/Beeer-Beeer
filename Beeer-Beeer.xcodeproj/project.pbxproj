@@ -15,9 +15,9 @@
 		3977D0A320E6754C00992835 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3977D0A120E6754C00992835 /* LaunchScreen.storyboard */; };
 		3977D0AD20E676D300992835 /* NetworkQueries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3977D0AB20E676D300992835 /* NetworkQueries.swift */; };
 		3977D0AE20E676D300992835 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3977D0AC20E676D300992835 /* Reachability.swift */; };
-		3977D0B120E6775500992835 /* BeerS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3977D0B020E6775500992835 /* BeerS.swift */; };
 		3977D0B420E67E9100992835 /* Notifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3977D0B320E67E9100992835 /* Notifier.swift */; };
 		3977D0BE20E6A79B00992835 /* BeerCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3977D0BD20E6A79B00992835 /* BeerCells.swift */; };
+		39A7412020EA322E0077D1A0 /* BeerS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A7411F20EA322E0077D1A0 /* BeerS.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,9 +31,9 @@
 		3977D0A420E6754C00992835 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3977D0AB20E676D300992835 /* NetworkQueries.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkQueries.swift; sourceTree = "<group>"; };
 		3977D0AC20E676D300992835 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
-		3977D0B020E6775500992835 /* BeerS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeerS.swift; sourceTree = "<group>"; };
 		3977D0B320E67E9100992835 /* Notifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifier.swift; sourceTree = "<group>"; };
 		3977D0BD20E6A79B00992835 /* BeerCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeerCells.swift; sourceTree = "<group>"; };
+		39A7411F20EA322E0077D1A0 /* BeerS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeerS.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,7 +93,7 @@
 		3977D0AF20E6771200992835 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				3977D0B020E6775500992835 /* BeerS.swift */,
+				39A7411F20EA322E0077D1A0 /* BeerS.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -196,11 +196,11 @@
 				3977D09820E6754A00992835 /* ViewController.swift in Sources */,
 				3977D09E20E6754A00992835 /* Beeer_Beeer.xcdatamodeld in Sources */,
 				3977D09620E6754A00992835 /* AppDelegate.swift in Sources */,
-				3977D0B120E6775500992835 /* BeerS.swift in Sources */,
 				3977D0B420E67E9100992835 /* Notifier.swift in Sources */,
 				3977D0BE20E6A79B00992835 /* BeerCells.swift in Sources */,
 				3977D0AE20E676D300992835 /* Reachability.swift in Sources */,
 				3977D0AD20E676D300992835 /* NetworkQueries.swift in Sources */,
+				39A7412020EA322E0077D1A0 /* BeerS.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

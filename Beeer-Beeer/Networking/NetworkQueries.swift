@@ -37,7 +37,13 @@ class NetworkQueries {
                 if let error = error {
                     self.errorMessage += "DataTask error: " + error.localizedDescription + "\n"
                 }else if let data = data,let response = response as? HTTPURLResponse, response.statusCode == 200{
-                    self.formBeerModels(data)
+                    do {
+                        let decoder = JSONDecoder()
+                        let beerData = try decoder.decode(Array<BeerS>.self, from: data)
+                        self.beers = beerData
+                    }catch let err{
+                        print("Err", err)
+                    }
                     
                     DispatchQueue.main.async {
                         completion(self.beers, self.errorMessage)
@@ -49,37 +55,37 @@ class NetworkQueries {
     }
     
     ///parses the data to for the Beer Models to be used. 
-    fileprivate func formBeerModels(_ data: Data) {
-        var response: [Any]?
-        do {
-            response = try JSONSerialization.jsonObject(with: data, options: []) as? [Any]
-        } catch let parseError as NSError {
-            errorMessage += "JSONSerialization error: \(parseError.localizedDescription)\n"
-            return
-        }
-        
-        guard let allData = response else {
-            errorMessage += "Response could not be parsed\n"
-            return
-        }
-        
-        for item in allData{
-            if let dict = item as? [String:Any]{
-                var abv = dict["abv"] as? String
-                if abv == nil || abv == ""{
-                    abv = "0"
-                }
-                let ibu = dict["ibu"] as? String
-                let id = dict["id"] as? Int
-                let name = dict["name"] as? String
-                let style = dict["style"] as? String
-                let ounces = dict["ounces"] as? Int
-                
-                let repo = BeerS(Abv: abv, Ibu: ibu, id: id, name: name, style: style, ounces: ounces)
-                self.beers.append(repo)
-            }
-        }
-        
-    }
+//    fileprivate func formBeerModels(_ data: Data) {
+//        var response: [Any]?
+//        do {
+//            response = try JSONSerialization.jsonObject(with: data, options: []) as? [Any]
+//        } catch let parseError as NSError {
+//            errorMessage += "JSONSerialization error: \(parseError.localizedDescription)\n"
+//            return
+//        }
+//
+//        guard let allData = response else {
+//            errorMessage += "Response could not be parsed\n"
+//            return
+//        }
+//
+//        for item in allData{
+//            if let dict = item as? [String:Any]{
+//                var abv = dict["abv"] as? String
+//                if abv == nil || abv == ""{
+//                    abv = "0"
+//                }
+//                let ibu = dict["ibu"] as? String
+//                let id = dict["id"] as? Int
+//                let name = dict["name"] as? String
+//                let style = dict["style"] as? String
+//                let ounces = dict["ounces"] as? Int
+//
+//                //let repo = BeerS(Abv: abv, Ibu: ibu, id: id, name: name, style: style, ounces: ounces)
+//                //self.beers.append(repo)
+//            }
+//        }
+//
+//    }
     
 }

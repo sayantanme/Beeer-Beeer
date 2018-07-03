@@ -1,31 +1,39 @@
 //
-//  GitHubUser.swift
-//  Git-it
+//  BeerSCodable.swift
+//  Beeer-Beeer
 //
-//  Created by Sayantan Chakraborty on 24/11/17.
-//  Copyright © 2017 Sayantan Chakraborty. All rights reserved.
+//  Created by Sayantan Chakraborty on 02/07/18.
+//  Copyright © 2018 Personal. All rights reserved.
 //
 
-import Foundation.NSURL
+import Foundation
 
-// Query service creates Track objects
-struct BeerS {
-    
+struct BeerS: Codable {
     let Abv: String?
     let Ibu: String?
     let id: Int?
     let name: String?
     let style: String?
-    let ounces: Int?
- 
+    let ounces: Double?
     
-    init(Abv: String?, Ibu: String?, id: Int?, name: String?, style: String?, ounces: Int?) {
-        self.name = name
-        self.Abv = Abv
-        self.id = id
-        self.Ibu = Ibu
-        self.style = style
-        self.ounces = ounces
+    enum CodingKeys: String, CodingKey {
+        case Abv = "abv"
+        case Ibu = "ibu"
+        case id
+        case name
+        case style
+        case ounces
+    }
+    
+    init(from decoder:Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        let _abv = try values.decode(String.self, forKey: .Abv)
+        Abv = _abv == "" ? "0": _abv
+        Ibu = try values.decode(String.self, forKey: .Ibu)
+        id = try values.decode(Int.self, forKey: .id)
+        name = try values.decode(String.self, forKey: .name)
+        style = try values.decode(String.self, forKey: .style)
+        ounces = try values.decode(Double.self, forKey: .ounces)
     }
     
 }
