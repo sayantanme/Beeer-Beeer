@@ -10,37 +10,19 @@ import UIKit
 
 class ViewController: UITableViewController,Notifier {
 
-    fileprivate var beerList = [BeerS]()
-    fileprivate let searchController = UISearchController(searchResultsController: nil)
-    fileprivate var filteredbeerList = [BeerS]()
-    fileprivate var activityIndicator = UIActivityIndicatorView()
+    var beerList = [BeerS]()
+    let searchController = UISearchController(searchResultsController: nil)
+    var filteredbeerList = [BeerS]()
+    var activityIndicator = UIActivityIndicatorView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         doSetupWork()
-        // Setup the Search Controller
-        searchController.searchResultsUpdater = self
-        searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Beers by Name or Style"
-        navigationItem.searchController = searchController
-        definesPresentationContext = true
-        
-        self.navigationItem.title = "Beeer-Cheer"
-        self.navigationController?.navigationBar.prefersLargeTitles = true
-        activityIndicator.center = self.view.center
-        activityIndicator.hidesWhenStopped = true
-        self.view.addSubview(activityIndicator)
-        
-        tableView.refreshControl = UIRefreshControl()
-        
-        tableView.refreshControl?.addTarget(self, action: #selector(doSetupWork), for: .valueChanged)
         
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -113,63 +95,61 @@ class ViewController: UITableViewController,Notifier {
         }))
         
         self.present(alert, animated: true, completion: {
-            print("completion block")
             self.tableView.reloadData()
         })
     }
     
 }
-extension ViewController:UISearchResultsUpdating{
+
+/// Extension to set up the View Controller
+extension ViewController {
+    
     
     /// Setup work calls the http method to fetch list of bears asynchronously
-    @objc fileprivate func doSetupWork(){
+    fileprivate func doSetupWork(){
         activityIndicator.startAnimating()
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        NetworkQueries().fetchBeerRepos { (beers, error) in
-            guard error.isEmpty else{
-                self.displayAlert(title: "Error", message: error)
-                return
-            }
-            if let beerss = beers{
-                self.beerList = beerss
-                self.filteredbeerList=beerss
-                self.activityIndicator.stopAnimating()
-                UIApplication.shared.isNetworkActivityIndicatorVisible = false
-                self.tableView.refreshControl?.endRefreshing()
-                self.tableView.reloadData()
+        
+        // Setup the Search Controller
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Beers by Name or Style"
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
+        
+        self.navigationItem.title = "Beeer-Cheer"
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        self.view.addSubview(activityIndicator)
+        
+        tableView.refreshControl = UIRefreshControl()
+        
+        tableView.refreshControl?.addTarget(self, action: #selector(fetchDataFromNetwork), for: UIControl.Event.valueChanged)
+        
+        
+        fetchDataFromNetwork()
+        
+    }
+    
+    @objc fileprivate func fetchDataFromNetwork(){
+        
+        if let url = URL(string: "http://starlord.hackerearth.com/beercraft") {
+            let beerResource = Resource<BeerS>(url:url)
+            NetworkQueries().load(beerResource) { (beers) in
+                if let beerss = beers{
+                    self.beerList = beerss
+                    self.filteredbeerList=beerss
+                    DispatchQueue.main.async{
+                        self.activityIndicator.stopAnimating()
+                        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                        self.tableView.refreshControl?.endRefreshing()
+                        self.tableView.reloadData()
+                    }
+                }
             }
         }
     }
-    // MARK: - UISearchResultsUpdating Delegate
-    func updateSearchResults(for searchController: UISearchController) {
-        filterContentForSearchText(searchController.searchBar.text!)
-    }
-    
-    
-    func searchBarIsEmpty() -> Bool {
-        // Returns true if the text is empty or nil
-        return searchController.searchBar.text?.isEmpty ?? true
-    }
-    
-    /// searches for the matching terms in the search bar from 2 different fields.
-    func filterContentForSearchText(_ searchText: String, scope: String = "All") {
-        filteredbeerList = self.beerList.filter({( beer : BeerS) -> Bool in
-            if (beer.name?.lowercased().contains(searchText.lowercased()))!{
-                return true
-            }else if (beer.style?.lowercased().contains(searchText.lowercased()))!{
-                return true
-            }else{
-                return false
-            }
-            
-        })
-        
-        tableView.reloadData()
-    }
-    
-    /// keeps a track whether the search bar is active or not.
-    func isFiltering() -> Bool {
-        return searchController.isActive && !searchBarIsEmpty()
-    }
 }
+
 

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		395CC6AD21083B7D0047BF74 /* VCSearchBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395CC6AC21083B7D0047BF74 /* VCSearchBarExtension.swift */; };
+		395CC6AF210842D20047BF74 /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395CC6AE210842D20047BF74 /* Resource.swift */; };
 		3977D09620E6754A00992835 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3977D09520E6754A00992835 /* AppDelegate.swift */; };
 		3977D09820E6754A00992835 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3977D09720E6754A00992835 /* ViewController.swift */; };
 		3977D09B20E6754A00992835 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3977D09920E6754A00992835 /* Main.storyboard */; };
@@ -18,9 +20,12 @@
 		3977D0B420E67E9100992835 /* Notifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3977D0B320E67E9100992835 /* Notifier.swift */; };
 		3977D0BE20E6A79B00992835 /* BeerCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3977D0BD20E6A79B00992835 /* BeerCells.swift */; };
 		39A7412020EA322E0077D1A0 /* BeerS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A7411F20EA322E0077D1A0 /* BeerS.swift */; };
+		39DFE93F2107886900AE97BF /* NetworkFetchProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DFE93E2107886900AE97BF /* NetworkFetchProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		395CC6AC21083B7D0047BF74 /* VCSearchBarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCSearchBarExtension.swift; sourceTree = "<group>"; };
+		395CC6AE210842D20047BF74 /* Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
 		3977D09220E6754A00992835 /* Beeer-Beeer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Beeer-Beeer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3977D09520E6754A00992835 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3977D09720E6754A00992835 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -34,6 +39,7 @@
 		3977D0B320E67E9100992835 /* Notifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifier.swift; sourceTree = "<group>"; };
 		3977D0BD20E6A79B00992835 /* BeerCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeerCells.swift; sourceTree = "<group>"; };
 		39A7411F20EA322E0077D1A0 /* BeerS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeerS.swift; sourceTree = "<group>"; };
+		39DFE93E2107886900AE97BF /* NetworkFetchProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkFetchProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +53,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		395CC6AB21083B160047BF74 /* Viewcontroller-Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				395CC6AC21083B7D0047BF74 /* VCSearchBarExtension.swift */,
+			);
+			path = "Viewcontroller-Extensions";
+			sourceTree = "<group>";
+		};
 		3977D08920E6754A00992835 = {
 			isa = PBXGroup;
 			children = (
@@ -66,6 +80,7 @@
 		3977D09420E6754A00992835 /* Beeer-Beeer */ = {
 			isa = PBXGroup;
 			children = (
+				39DFE93D2107880500AE97BF /* Protocol */,
 				3977D0B820E68FB700992835 /* Views */,
 				3977D0B520E681F300992835 /* ViewControllers */,
 				3977D0B220E67E6E00992835 /* Utils */,
@@ -86,6 +101,7 @@
 			children = (
 				3977D0AB20E676D300992835 /* NetworkQueries.swift */,
 				3977D0AC20E676D300992835 /* Reachability.swift */,
+				395CC6AE210842D20047BF74 /* Resource.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -109,6 +125,7 @@
 		3977D0B520E681F300992835 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				395CC6AB21083B160047BF74 /* Viewcontroller-Extensions */,
 				3977D09720E6754A00992835 /* ViewController.swift */,
 			);
 			path = ViewControllers;
@@ -120,6 +137,14 @@
 				3977D0BD20E6A79B00992835 /* BeerCells.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		39DFE93D2107880500AE97BF /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				39DFE93E2107886900AE97BF /* NetworkFetchProtocol.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -154,6 +179,7 @@
 				TargetAttributes = {
 					3977D09120E6754A00992835 = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1000;
 					};
 				};
 			};
@@ -194,10 +220,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				3977D09820E6754A00992835 /* ViewController.swift in Sources */,
+				39DFE93F2107886900AE97BF /* NetworkFetchProtocol.swift in Sources */,
 				3977D09E20E6754A00992835 /* Beeer_Beeer.xcdatamodeld in Sources */,
+				395CC6AF210842D20047BF74 /* Resource.swift in Sources */,
 				3977D09620E6754A00992835 /* AppDelegate.swift in Sources */,
 				3977D0B420E67E9100992835 /* Notifier.swift in Sources */,
 				3977D0BE20E6A79B00992835 /* BeerCells.swift in Sources */,
+				395CC6AD21083B7D0047BF74 /* VCSearchBarExtension.swift in Sources */,
 				3977D0AE20E676D300992835 /* Reachability.swift in Sources */,
 				3977D0AD20E676D300992835 /* NetworkQueries.swift in Sources */,
 				39A7412020EA322E0077D1A0 /* BeerS.swift in Sources */,
@@ -353,7 +382,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sayantanchakraborty.Beeer-Cheeer";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -371,7 +400,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sayantanchakraborty.Beeer-Cheeer";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
